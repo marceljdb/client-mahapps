@@ -27,7 +27,6 @@ namespace MahAppsExample
         {
             InitializeComponent();
             dataGrid.AutoGenerateColumns = true;
-
             dataGrid.ItemsSource = Environment.GetEnvironmentVariables()
                 .Cast<DictionaryEntry>().ToList();
         }
