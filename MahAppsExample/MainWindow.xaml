@@ -9,8 +9,17 @@
 
 
     <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Icons.xaml">
 
-        <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+        </ResourceDictionary>
+
+
+
     </Window.Resources>
 
     <controls:MetroContentControl>
@@ -20,26 +29,41 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition  Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid Margin="80,14,24,-14" >
+            <Grid Margin="95,14,9,-13" Grid.RowSpan="2" >
+                <controls:Flyout x:Name="flyMenu" Position="Left" Panel.ZIndex="10000" Width="200" HorizontalAlignment="Left" Margin="-94,-8,0,8"/>
+                <Button Width="50"
+                        Height="50"
+                        Style="{DynamicResource MetroCircleButtonStyle}" Margin="-69,1,0,0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" Click="Button_Click_2">
+                    <Rectangle Width="20"
+                               Height="20"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_city}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+
 
                 <!--<Button Click="button_Click_1">Cad os</Button>-->
                 <DataGrid x:Name="dataGrid" Margin="8,59,12,127" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True" />
                 <Button x:Name="button" Content="Novo" HorizontalAlignment="Left" Margin="7,14,0,0" VerticalAlignment="Top" Width="74"
+                         Style="{DynamicResource SquareButtonStyle}" Click="button_Click_1" />
+
+                <Button x:Name="button_Copy" Content="Alterar" 
+                        HorizontalAlignment="Left" 
+                        Margin="86,14,0,0" VerticalAlignment="Top" Width="74"
                          Style="{DynamicResource SquareButtonStyle}"/>
-
-                <Button x:Name="button_Copy" Content="Alterar" HorizontalAlignment="Left" Margin="86,14,0,0" VerticalAlignment="Top" Width="74"
-                         Style="{DynamicResource SquareButtonStyle}"/>
-
-                <ComboBox x:Name="comboBox"
-                          Margin="164,14,516,505"
-                          Height="28"
-                          controls:TextBoxHelper.UseFloatingWatermark="True"
-                          controls:TextBoxHelper.Watermark="Mais Opções"                        
-                          IsEditable="True" />
+                <!--<ComboBox x:Name="comboBox"
+                	Margin="164,14.5,516,505.5"
+                	controls:TextBoxHelper.UseFloatingWatermark="True"
+                	controls:TextBoxHelper.Watermark="Mais Opções"                        
+                	IsEditable="True" />-->
 
 
 
-                <StackPanel HorizontalAlignment="Right" Height="46" Margin="0,9,60,0" VerticalAlignment="Top" Width="451">
+                <StackPanel HorizontalAlignment="Right" Height="46" Margin="0,9,10,0" VerticalAlignment="Top" Width="451">
                     <Grid HorizontalAlignment="Right">
                         <TextBox x:Name="textBox" Margin="{StaticResource ControlMargin}" TextWrapping="Wrap"  Width="147" Grid.Column="0"                                 
                                 controls:TextBoxHelper.UseFloatingWatermark="True"                         
@@ -49,6 +73,13 @@
                                 RenderTransformOrigin="0.966,0.571" Margin="73,5,304,0"/>
                     </Grid>
                 </StackPanel>
+                <ComboBox x:Name="comboBox" 
+                          HorizontalAlignment="Left" 
+                          Margin="165,14,0,0" 
+                          VerticalAlignment="Top" Width="256" Height="28"
+                          IsEditable="True"
+                          controls:TextBoxHelper.Watermark="Mais Ações"
+                          controls:TextBoxHelper.UseFloatingWatermark="True" />
 
             </Grid>
             <!--<TabControl Margin="0,0,0,87" Grid.Row="0" Grid.RowSpan="2" >
@@ -58,7 +89,15 @@
                     <Grid />
                 </TabItem>
             </TabControl>-->
-            <Image Source="C:\Temp\Sem título.png" Stretch="Fill" Width="62" Margin="0,0,0,-228" HorizontalAlignment="Left" Height="734" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <!--<Image Source="C:\Temp\Sem título.png" Stretch="Fill" Width="62" Margin="0,0,0,-228" HorizontalAlignment="Left" Height="734" VerticalAlignment="Top" Grid.RowSpan="2"/>-->
+            <!--<Menu>
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+
+            </Menu>-->
 
             <!--<StatusBar Grid.Row="1">
                 <StatusBarItem>MahApps.Metro DEMO Application</StatusBarItem>
