@@ -4,7 +4,7 @@
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MahAppsExample.MainWindow"
                       GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="MainWindow" WindowState="Maximized"  Height="774.737" Width="1024" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" WindowState="Maximized"  Height="774.737" Width="1024" WindowStartupLocation="CenterScreen" Background="#FF4977BC">
 
 
 
@@ -26,62 +26,100 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="744" />
                 <RowDefinition  Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid Margin="95,14,9,-13" Grid.RowSpan="2" >
-                <controls:Flyout x:Name="flyMenu" Position="Left" Panel.ZIndex="10000" Width="200" HorizontalAlignment="Left" Margin="-94,-8,0,8"/>
-                <Button Width="50"
-                        Height="50"
-                        Style="{DynamicResource MetroCircleButtonStyle}" Margin="-69,1,0,0"
+            <Grid.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+            </Grid.Resources>
+
+            <!--<controls:Flyout x:Name="flyMenu" Position="Left" Panel.ZIndex="10000" Width="200" HorizontalAlignment="Left" Margin="-94,-8,0,8" Background="#FF0378A4" FontSize="10">
+                    <StackPanel HorizontalAlignment="Stretch" >
+                        <Button Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Center"
+                            Height="50" Content="Teste" Margin="-3,0,17,0"/>
+
+
+                    </StackPanel>
+                </controls:Flyout>-->
+            <Button Width="50"
+                        Height="27"
+                        Style="{DynamicResource SquareButtonStyle}" Margin="14,3,0,0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" Click="Button_Click_2">
-                    <Rectangle Width="20"
+                <Rectangle Width="20"
                                Height="20"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_city}" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
-                </Button>
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_city}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <TabControl x:Name="tab" TabStripPlacement="Left" FontFamily="Arial" FontSize="10" RenderTransformOrigin="0.5,0.5" Background="#FF4977BC" >
+                <controls:MetroTabItem Name="TabOne" Height="45" FontSize="10" Foreground="White" Margin="0,43,0,-43" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <controls:MetroTabItem.Background>
+                        <ImageBrush/>
+                    </controls:MetroTabItem.Background>
+
+                    <TabItem.Header>
+                        <TextBlock FontSize="10" TextWrapping="Wrap">                          
+                            <InlineUIContainer>
+                                <Image Source="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png" Height="11"></Image>
+                            </InlineUIContainer>            
+                             <Run>Ordem de Serviço</Run></TextBlock>
+                    </TabItem.Header>
 
 
-                <!--<Button Click="button_Click_1">Cad os</Button>-->
-                <DataGrid x:Name="dataGrid" Margin="8,59,12,127" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True" />
-                <Button x:Name="button" Content="Novo" HorizontalAlignment="Left" Margin="7,14,0,0" VerticalAlignment="Top" Width="74"
-                         Style="{DynamicResource SquareButtonStyle}" Click="button_Click_1" />
+                    <Grid Margin="0,42,0,-507.5" Background="White">
+                        <TextBlock TextWrapping="WrapWithOverflow" Margin="-2,-24,2,24" FontSize="10" FontFamily="Arial" FontWeight="Bold">ORDEM DE SERVIÇO</TextBlock>
 
-                <Button x:Name="button_Copy" Content="Alterar" 
+
+                        <Button x:Name="button_Copy" Content="Alterar"
                         HorizontalAlignment="Left" 
                         Margin="86,14,0,0" VerticalAlignment="Top" Width="74"
                          Style="{DynamicResource SquareButtonStyle}"/>
-                <!--<ComboBox x:Name="comboBox"
-                	Margin="164,14.5,516,505.5"
-                	controls:TextBoxHelper.UseFloatingWatermark="True"
-                	controls:TextBoxHelper.Watermark="Mais Opções"                        
-                	IsEditable="True" />-->
 
+                        <DataGrid x:Name="dataGrid" Margin="8,59,12,127" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True" />
+                        <Button x:Name="button" Content="Novo" HorizontalAlignment="Left" Margin="7,14,0,0" VerticalAlignment="Top" Width="74"
+                         Style="{DynamicResource SquareButtonStyle}" Click="button_Click_1" />
 
-
-                <StackPanel HorizontalAlignment="Right" Height="46" Margin="0,9,10,0" VerticalAlignment="Top" Width="451">
-                    <Grid HorizontalAlignment="Right">
-                        <TextBox x:Name="textBox" Margin="{StaticResource ControlMargin}" TextWrapping="Wrap"  Width="147" Grid.Column="0"                                 
+                        <StackPanel HorizontalAlignment="Right" Height="46" Margin="0,9,10,0" VerticalAlignment="Top" Width="451">
+                            <Grid HorizontalAlignment="Right">
+                                <TextBox x:Name="textBox" Margin="{StaticResource ControlMargin}" TextWrapping="Wrap"  Width="147" Grid.Column="0"                                 
                                 controls:TextBoxHelper.UseFloatingWatermark="True"                         
                                 controls:TextBoxHelper.Watermark="Filtrar" />
-                        <Button x:Name="button_Copy1" Content="Filtro" Width="74"
+                                <Button x:Name="button_Copy1" Content="Filtro" Width="74"
                 		Style="{DynamicResource SquareButtonStyle}"
                                 RenderTransformOrigin="0.966,0.571" Margin="73,5,304,0"/>
-                    </Grid>
-                </StackPanel>
-                <ComboBox x:Name="comboBox" 
+                            </Grid>
+                        </StackPanel>
+                        <ComboBox x:Name="comboBox" 
                           HorizontalAlignment="Left" 
                           Margin="165,14,0,0" 
                           VerticalAlignment="Top" Width="256" Height="28"
                           IsEditable="True"
                           controls:TextBoxHelper.Watermark="Mais Ações"
                           controls:TextBoxHelper.UseFloatingWatermark="True" />
+                    </Grid>
+                </controls:MetroTabItem>
 
-            </Grid>
+                <controls:MetroTabItem Name="TabTwo" Background="{x:Null}" Foreground="White" FontSize="10" Margin="0,50,0,-50" Height="18" VerticalAlignment="Top">
+                    <TabItem.Header>
+                        <TextBlock Text="Clientes" FontSize="14" />
+                        <!--<Button>Clientes</Button>-->
+                    </TabItem.Header>
+
+                    <TabItem.Content>
+                        <TextBlock TextWrapping="WrapWithOverflow">
+				   Tab Two here.
+                        </TextBlock>
+                    </TabItem.Content>
+                </controls:MetroTabItem>
+            </TabControl>
+
+
+
+
             <!--<TabControl Margin="0,0,0,87" Grid.Row="0" Grid.RowSpan="2" >
                 <TabItem Header="Ordens de Serviço" Margin="78,10,-78,-10">
                 </TabItem>

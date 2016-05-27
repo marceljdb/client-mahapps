@@ -63,8 +63,15 @@ namespace MahAppsExample
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            flyMenu.IsOpen = !flyMenu.IsOpen;
+            //flyMenu.IsOpen = !flyMenu.IsOpen;
 
-       }
+            if (tab.Width == 200)
+                tab.Width = 50;
+            else
+                tab.Width = 200;
+
+        }
+
+     
     }
 }
